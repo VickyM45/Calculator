@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Calculator Node</title>
+        <link rel="stylesheet" href="./calculator.css">
+    </head>
+    <body onload="storage()" ondragover="drag_over(event)" ondrop="drop(event)">
+      <div id="header"><h1>Calculator</h1></div>
+      <iframe id="player2" hidden src="https://www.youtube.com/embed/c730u14NQKM" allow="autoplay; encrypted-media"></iframe>
+      <iframe srcdoc = "
+        <html>
+        <body>
+            <textarea id='resultArea'></textarea>
+            <script>
+                window.addEventListener('message',(event) =>{
+                if(event.origin !== '*'){
+                let arr = [];
+                arr = event.data;
+                const resultId = arr[0];       
+                const y = arr[1];
+                const resultValue = eval(y);
+                window.parent.postMessage([resultId,resultValue],'*');
+                }
+              },false);
+          </script>
+       </body>
+       </html>
+      " id = "myFrame" hidden>
+      </iframe>
+      <!-- <div id="btn1"><button onclick="myFunction()">frameclik</button></div> -->
+      <div id="btn"><button>Click</button></div>
+      <script src="calci.js"></script>
+  </body>
+</html>
